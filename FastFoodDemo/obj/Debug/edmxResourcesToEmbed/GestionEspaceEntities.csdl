@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GestionEspaceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="C__EFMigrationsHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+    </Key>
+    <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Categorie">
+    <Key>
+      <PropertyRef Name="Id_Categorie" />
+    </Key>
+    <Property Name="Id_Categorie" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nom_Categorie" Type="String" MaxLength="220" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Image_Categorie" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <NavigationProperty Name="Produits" Relationship="Self.FK__Produit__Id_Cate__29572725" FromRole="Categorie" ToRole="Produit" />
+  </EntityType>
+  <EntityType Name="CommandePayer">
+    <Key>
+      <PropertyRef Name="Id_Commande" />
+    </Key>
+    <Property Name="Id_Commande" Type="Int32" Nullable="false" />
+    <Property Name="Nom_Serveur" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Nom_Table" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Date_Commande" Type="DateTime" Precision="3" />
+    <Property Name="Total_Commande" Type="Decimal" Precision="10" Scale="2" />
+  </EntityType>
+  <EntityType Name="DetailsCommandeImprimante">
+    <Key>
+      <PropertyRef Name="Id_DetailCommande" />
+    </Key>
+    <Property Name="Id_DetailCommande" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_Commande" Type="Int32" Nullable="false" />
+    <Property Name="Id_Imprimante" Type="Int32" />
+    <Property Name="Id_Produit" Type="Int32" />
+    <Property Name="Date_Produit" Type="DateTime" Precision="3" />
+    <Property Name="Quantite" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Prix" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="Serveur" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Nom_Table" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Etat" Type="Int32" />
+    <NavigationProperty Name="Imprimante" Relationship="Self.FK__DetailsCo__Id_Im__403A8C7D" FromRole="DetailsCommandeImprimante" ToRole="Imprimante" />
+    <NavigationProperty Name="Produit" Relationship="Self.FK__DetailsCo__Id_Pr__412EB0B6" FromRole="DetailsCommandeImprimante" ToRole="Produit" />
+  </EntityType>
+  <EntityType Name="Employer">
+    <Key>
+      <PropertyRef Name="CIN" />
+    </Key>
+    <Property Name="CIN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Nom" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Prenom" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DateInscription" Type="DateTime" Precision="0" />
+    <Property Name="MotPasse" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Role" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Imprimante">
+    <Key>
+      <PropertyRef Name="Id_Imprimante" />
+    </Key>
+    <Property Name="Id_Imprimante" Type="Int32" Nullable="false" />
+    <Property Name="Nom_Imprimante" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="DetailsCommandeImprimantes" Relationship="Self.FK__DetailsCo__Id_Im__403A8C7D" FromRole="Imprimante" ToRole="DetailsCommandeImprimante" />
+  </EntityType>
+  <EntityType Name="Produit">
+    <Key>
+      <PropertyRef Name="Id_Produit" />
+    </Key>
+    <Property Name="Id_Produit" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nom_Produit" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Id_CategorieProduit" Type="Int32" />
+    <Property Name="Prix_Normal" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Image_Produit" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="Categorie" Relationship="Self.FK__Produit__Id_Cate__29572725" FromRole="Produit" ToRole="Categorie" />
+    <NavigationProperty Name="DetailsCommandeImprimantes" Relationship="Self.FK__DetailsCo__Id_Pr__412EB0B6" FromRole="Produit" ToRole="DetailsCommandeImprimante" />
+  </EntityType>
+  <EntityType Name="TableDefault">
+    <Key>
+      <PropertyRef Name="Reference" />
+      <PropertyRef Name="Nom" />
+    </Key>
+    <Property Name="Reference" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Nom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Etat" Type="Int32" />
+  </EntityType>
+  <Association Name="FK__Produit__Id_Cate__29572725">
+    <End Role="Categorie" Type="Self.Categorie" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Produit" Type="Self.Produit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categorie">
+        <PropertyRef Name="Id_Categorie" />
+      </Principal>
+      <Dependent Role="Produit">
+        <PropertyRef Name="Id_CategorieProduit" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DetailsCo__Id_Im__403A8C7D">
+    <End Role="Imprimante" Type="Self.Imprimante" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="DetailsCommandeImprimante" Type="Self.DetailsCommandeImprimante" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Imprimante">
+        <PropertyRef Name="Id_Imprimante" />
+      </Principal>
+      <Dependent Role="DetailsCommandeImprimante">
+        <PropertyRef Name="Id_Imprimante" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DetailsCo__Id_Pr__412EB0B6">
+    <End Role="Produit" Type="Self.Produit" Multiplicity="0..1" />
+    <End Role="DetailsCommandeImprimante" Type="Self.DetailsCommandeImprimante" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Produit">
+        <PropertyRef Name="Id_Produit" />
+      </Principal>
+      <Dependent Role="DetailsCommandeImprimante">
+        <PropertyRef Name="Id_Produit" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="GestionEspaceEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="C__EFMigrationsHistory" EntityType="Self.C__EFMigrationsHistory" />
+    <EntitySet Name="Categories" EntityType="Self.Categorie" />
+    <EntitySet Name="CommandePayers" EntityType="Self.CommandePayer" />
+    <EntitySet Name="DetailsCommandeImprimantes" EntityType="Self.DetailsCommandeImprimante" />
+    <EntitySet Name="Employers" EntityType="Self.Employer" />
+    <EntitySet Name="Imprimantes" EntityType="Self.Imprimante" />
+    <EntitySet Name="Produits" EntityType="Self.Produit" />
+    <EntitySet Name="TableDefaults" EntityType="Self.TableDefault" />
+    <AssociationSet Name="FK__Produit__Id_Cate__29572725" Association="Self.FK__Produit__Id_Cate__29572725">
+      <End Role="Categorie" EntitySet="Categories" />
+      <End Role="Produit" EntitySet="Produits" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DetailsCo__Id_Im__403A8C7D" Association="Self.FK__DetailsCo__Id_Im__403A8C7D">
+      <End Role="Imprimante" EntitySet="Imprimantes" />
+      <End Role="DetailsCommandeImprimante" EntitySet="DetailsCommandeImprimantes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DetailsCo__Id_Pr__412EB0B6" Association="Self.FK__DetailsCo__Id_Pr__412EB0B6">
+      <End Role="Produit" EntitySet="Produits" />
+      <End Role="DetailsCommandeImprimante" EntitySet="DetailsCommandeImprimantes" />
+    </AssociationSet>
+    <FunctionImport Name="RapportVentes" ReturnType="Collection(GestionEspaceModel.RapportVentes_Result)">
+      <Parameter Name="DateDebut" Mode="In" Type="DateTime" />
+      <Parameter Name="DateFin" Mode="In" Type="DateTime" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="RapportVentes_Result">
+    <Property Type="String" Name="Produit" Nullable="false" MaxLength="250" />
+    <Property Type="Decimal" Name="Quantité_total" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="Decimal" Name="Prix_unitaire" Nullable="true" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="Montant_total" Nullable="true" Precision="38" Scale="4" />
+  </ComplexType>
+</Schema>

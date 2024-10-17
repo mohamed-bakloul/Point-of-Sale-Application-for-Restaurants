@@ -1,0 +1,582 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="GestionEspaceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__EFMigrationsHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Categorie">
+          <Key>
+            <PropertyRef Name="Id_Categorie" />
+          </Key>
+          <Property Name="Id_Categorie" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nom_Categorie" Type="nvarchar" MaxLength="220" Nullable="false" />
+          <Property Name="Image_Categorie" Type="image" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CommandePayer">
+          <Key>
+            <PropertyRef Name="Id_Commande" />
+          </Key>
+          <Property Name="Id_Commande" Type="int" Nullable="false" />
+          <Property Name="Nom_Serveur" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Nom_Table" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Date_Commande" Type="datetime" />
+          <Property Name="Total_Commande" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="DetailsCommandeImprimante">
+          <Key>
+            <PropertyRef Name="Id_DetailCommande" />
+          </Key>
+          <Property Name="Id_DetailCommande" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_Commande" Type="int" Nullable="false" />
+          <Property Name="Id_Imprimante" Type="int" />
+          <Property Name="Id_Produit" Type="int" />
+          <Property Name="Date_Produit" Type="datetime" />
+          <Property Name="Quantite" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Prix" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Serveur" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Nom_Table" Type="varchar" MaxLength="250" />
+          <Property Name="Etat" Type="int" />
+        </EntityType>
+        <EntityType Name="Employer">
+          <Key>
+            <PropertyRef Name="CIN" />
+          </Key>
+          <Property Name="CIN" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Nom" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Prenom" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="DateInscription" Type="date" />
+          <Property Name="MotPasse" Type="varchar" MaxLength="900" Nullable="false" />
+          <Property Name="Role" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="TablesEspace">
+          <Key>
+            <PropertyRef Name="Reference" />
+          </Key>
+          <Property Name="Reference" Type="int" Nullable="false" />
+          <Property Name="Nom" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Etat" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Imprimante">
+          <Key>
+            <PropertyRef Name="Id_Imprimante" />
+          </Key>
+          <Property Name="Id_Imprimante" Type="int" Nullable="false" />
+          <Property Name="Nom_Imprimante" Type="nvarchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Note">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nom" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Produit">
+          <Key>
+            <PropertyRef Name="Id_Produit" />
+          </Key>
+          <Property Name="Id_Produit" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nom_Produit" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Id_CategorieProduit" Type="int" />
+          <Property Name="Prix_Normal" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Image_Produit" Type="image" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'GestionEspace.dbo.TableDefault' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="TableDefault">
+          <Key>
+            <PropertyRef Name="Reference" />
+            <PropertyRef Name="Nom" />
+          </Key>
+          <Property Name="Reference" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nom" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Etat" Type="int" />
+        </EntityType>
+        <Association Name="FK__DetailsCo__Id_Im__403A8C7D">
+          <End Role="Imprimante" Type="Self.Imprimante" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DetailsCommandeImprimante" Type="Self.DetailsCommandeImprimante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Imprimante">
+              <PropertyRef Name="Id_Imprimante" />
+            </Principal>
+            <Dependent Role="DetailsCommandeImprimante">
+              <PropertyRef Name="Id_Imprimante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DetailsCo__Id_Pr__412EB0B6">
+          <End Role="Produit" Type="Self.Produit" Multiplicity="0..1" />
+          <End Role="DetailsCommandeImprimante" Type="Self.DetailsCommandeImprimante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Produit">
+              <PropertyRef Name="Id_Produit" />
+            </Principal>
+            <Dependent Role="DetailsCommandeImprimante">
+              <PropertyRef Name="Id_Produit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Produit__Id_Cate__29572725">
+          <End Role="Categorie" Type="Self.Categorie" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Produit" Type="Self.Produit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categorie">
+              <PropertyRef Name="Id_Categorie" />
+            </Principal>
+            <Dependent Role="Produit">
+              <PropertyRef Name="Id_CategorieProduit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="RapportCommandes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="RapportCommandesParAnnee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="RapportVentes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DateDebut" Type="datetime" Mode="In" />
+          <Parameter Name="DateFin" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="RapportVentesGeneral" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="RapportVentesParEmployer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DateDebut" Type="datetime" Mode="In" />
+          <Parameter Name="DateFin" Type="datetime" Mode="In" />
+          <Parameter Name="emloyer" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="TotalCommandeParAnnees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="GestionEspaceModelStoreContainer">
+          <EntitySet Name="__EFMigrationsHistory" EntityType="Self.__EFMigrationsHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categorie" EntityType="Self.Categorie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CommandePayer" EntityType="Self.CommandePayer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DetailsCommandeImprimante" EntityType="Self.DetailsCommandeImprimante" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employer" EntityType="Self.Employer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TablesEspace" EntityType="Self.TablesEspace" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Imprimante" EntityType="Self.Imprimante" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Note" EntityType="Self.Note" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Produit" EntityType="Self.Produit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TableDefault" EntityType="Self.TableDefault" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TableDefault].[Reference] AS [Reference], 
+    [TableDefault].[Nom] AS [Nom], 
+    [TableDefault].[Etat] AS [Etat]
+    FROM [dbo].[TableDefault] AS [TableDefault]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__DetailsCo__Id_Im__403A8C7D" Association="Self.FK__DetailsCo__Id_Im__403A8C7D">
+            <End Role="Imprimante" EntitySet="Imprimante" />
+            <End Role="DetailsCommandeImprimante" EntitySet="DetailsCommandeImprimante" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DetailsCo__Id_Pr__412EB0B6" Association="Self.FK__DetailsCo__Id_Pr__412EB0B6">
+            <End Role="Produit" EntitySet="Produit" />
+            <End Role="DetailsCommandeImprimante" EntitySet="DetailsCommandeImprimante" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Produit__Id_Cate__29572725" Association="Self.FK__Produit__Id_Cate__29572725">
+            <End Role="Categorie" EntitySet="Categorie" />
+            <End Role="Produit" EntitySet="Produit" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GestionEspaceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__EFMigrationsHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Categorie">
+          <Key>
+            <PropertyRef Name="Id_Categorie" />
+          </Key>
+          <Property Name="Id_Categorie" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom_Categorie" Type="String" MaxLength="220" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Image_Categorie" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <NavigationProperty Name="Produit" Relationship="Self.FK__Produit__Id_Cate__29572725" FromRole="Categorie" ToRole="Produit" />
+        </EntityType>
+        <EntityType Name="CommandePayer">
+          <Key>
+            <PropertyRef Name="Id_Commande" />
+          </Key>
+          <Property Name="Id_Commande" Type="Int32" Nullable="false" />
+          <Property Name="Nom_Serveur" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nom_Table" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Date_Commande" Type="DateTime" Precision="3" />
+          <Property Name="Total_Commande" Type="Decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="DetailsCommandeImprimante">
+          <Key>
+            <PropertyRef Name="Id_DetailCommande" />
+          </Key>
+          <Property Name="Id_DetailCommande" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Commande" Type="Int32" Nullable="false" />
+          <Property Name="Id_Imprimante" Type="Int32" />
+          <Property Name="Id_Produit" Type="Int32" />
+          <Property Name="Date_Produit" Type="DateTime" Precision="3" />
+          <Property Name="Quantite" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Prix" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Serveur" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nom_Table" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Etat" Type="Int32" />
+          <NavigationProperty Name="Imprimante" Relationship="Self.FK__DetailsCo__Id_Im__403A8C7D" FromRole="DetailsCommandeImprimante" ToRole="Imprimante" />
+          <NavigationProperty Name="Produit" Relationship="Self.FK__DetailsCo__Id_Pr__412EB0B6" FromRole="DetailsCommandeImprimante" ToRole="Produit" />
+        </EntityType>
+        <EntityType Name="Employer">
+          <Key>
+            <PropertyRef Name="CIN" />
+          </Key>
+          <Property Name="CIN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nom" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Prenom" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DateInscription" Type="DateTime" Precision="0" />
+          <Property Name="MotPasse" Type="String" MaxLength="900" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Role" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Imprimante">
+          <Key>
+            <PropertyRef Name="Id_Imprimante" />
+          </Key>
+          <Property Name="Id_Imprimante" Type="Int32" Nullable="false" />
+          <Property Name="Nom_Imprimante" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="DetailsCommandeImprimante" Relationship="Self.FK__DetailsCo__Id_Im__403A8C7D" FromRole="Imprimante" ToRole="DetailsCommandeImprimante" />
+        </EntityType>
+        <EntityType Name="Produit">
+          <Key>
+            <PropertyRef Name="Id_Produit" />
+          </Key>
+          <Property Name="Id_Produit" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom_Produit" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Id_CategorieProduit" Type="Int32" />
+          <Property Name="Prix_Normal" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Image_Produit" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Categorie" Relationship="Self.FK__Produit__Id_Cate__29572725" FromRole="Produit" ToRole="Categorie" />
+          <NavigationProperty Name="DetailsCommandeImprimante" Relationship="Self.FK__DetailsCo__Id_Pr__412EB0B6" FromRole="Produit" ToRole="DetailsCommandeImprimante" />
+        </EntityType>
+        <EntityType Name="TableDefault">
+          <Key>
+            <PropertyRef Name="Reference" />
+            <PropertyRef Name="Nom" />
+          </Key>
+          <Property Name="Reference" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Etat" Type="Int32" />
+        </EntityType>
+        <Association Name="FK__Produit__Id_Cate__29572725">
+          <End Role="Categorie" Type="Self.Categorie" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Produit" Type="Self.Produit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categorie">
+              <PropertyRef Name="Id_Categorie" />
+            </Principal>
+            <Dependent Role="Produit">
+              <PropertyRef Name="Id_CategorieProduit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DetailsCo__Id_Im__403A8C7D">
+          <End Role="Imprimante" Type="Self.Imprimante" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DetailsCommandeImprimante" Type="Self.DetailsCommandeImprimante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Imprimante">
+              <PropertyRef Name="Id_Imprimante" />
+            </Principal>
+            <Dependent Role="DetailsCommandeImprimante">
+              <PropertyRef Name="Id_Imprimante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DetailsCo__Id_Pr__412EB0B6">
+          <End Role="Produit" Type="Self.Produit" Multiplicity="0..1" />
+          <End Role="DetailsCommandeImprimante" Type="Self.DetailsCommandeImprimante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Produit">
+              <PropertyRef Name="Id_Produit" />
+            </Principal>
+            <Dependent Role="DetailsCommandeImprimante">
+              <PropertyRef Name="Id_Produit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GestionEspaceEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__EFMigrationsHistory" EntityType="Self.C__EFMigrationsHistory" />
+          <EntitySet Name="Categorie" EntityType="Self.Categorie" />
+          <EntitySet Name="CommandePayer" EntityType="Self.CommandePayer" />
+          <EntitySet Name="DetailsCommandeImprimante" EntityType="Self.DetailsCommandeImprimante" />
+          <EntitySet Name="Employer" EntityType="Self.Employer" />
+          <EntitySet Name="Imprimante" EntityType="Self.Imprimante" />
+          <EntitySet Name="Produit" EntityType="Self.Produit" />
+          <EntitySet Name="TableDefault" EntityType="Self.TableDefault" />
+          <AssociationSet Name="FK__Produit__Id_Cate__29572725" Association="Self.FK__Produit__Id_Cate__29572725">
+            <End Role="Categorie" EntitySet="Categorie" />
+            <End Role="Produit" EntitySet="Produit" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DetailsCo__Id_Im__403A8C7D" Association="Self.FK__DetailsCo__Id_Im__403A8C7D">
+            <End Role="Imprimante" EntitySet="Imprimante" />
+            <End Role="DetailsCommandeImprimante" EntitySet="DetailsCommandeImprimante" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DetailsCo__Id_Pr__412EB0B6" Association="Self.FK__DetailsCo__Id_Pr__412EB0B6">
+            <End Role="Produit" EntitySet="Produit" />
+            <End Role="DetailsCommandeImprimante" EntitySet="DetailsCommandeImprimante" />
+          </AssociationSet>
+          <FunctionImport Name="RapportVentes" ReturnType="Collection(GestionEspaceModel.RapportVentes_Result)">
+            <Parameter Name="DateDebut" Mode="In" Type="DateTime" />
+            <Parameter Name="DateFin" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="RapportVentesGeneral" ReturnType="Collection(GestionEspaceModel.RapportVentesGeneral_Result)" />
+          <FunctionImport Name="RapportVentesParEmployer" ReturnType="Collection(GestionEspaceModel.RapportVentesParEmployer_Result)">
+            <Parameter Name="DateDebut" Mode="In" Type="DateTime" />
+            <Parameter Name="DateFin" Mode="In" Type="DateTime" />
+            <Parameter Name="emloyer" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="TotalCommandeParAnnees" ReturnType="Collection(GestionEspaceModel.TotalCommandeParAnnees_Result)" />
+          <FunctionImport Name="RapportCommandes" ReturnType="Collection(GestionEspaceModel.RapportCommandes_Result)" />
+          <FunctionImport Name="RapportCommandesParAnnee" ReturnType="Collection(GestionEspaceModel.RapportCommandesParAnnee_Result)" />
+          <EntitySet Name="Note" EntityType="GestionEspaceModel.Note" />
+          <EntitySet Name="TablesEspace" EntityType="GestionEspaceModel.EspaceTable" />
+        </EntityContainer>
+        <ComplexType Name="RapportVentes_Result">
+          <Property Type="String" Name="Produit" Nullable="false" MaxLength="250" />
+          <Property Type="Decimal" Name="Quantité" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="Prix" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="Montant" Nullable="true" Precision="38" Scale="4" />
+        </ComplexType>
+        <ComplexType Name="RapportVentesGeneral_Result">
+          <Property Type="String" Name="Produit" Nullable="false" MaxLength="250" />
+          <Property Type="Decimal" Name="Quantité" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="Prix" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="Montant" Nullable="true" Precision="38" Scale="4" />
+        </ComplexType>
+        <ComplexType Name="RapportVentesParEmployer_Result">
+          <Property Type="String" Name="Produit" Nullable="false" MaxLength="250" />
+          <Property Type="Decimal" Name="Quantité" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="Prix" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="Montant" Nullable="true" Precision="38" Scale="4" />
+        </ComplexType>
+        <ComplexType Name="TotalCommandeParAnnees_Result">
+          <Property Type="Int32" Name="Date" Nullable="true" />
+          <Property Type="Decimal" Name="Montant" Nullable="true" Precision="38" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="RapportCommandes_Result">
+          <Property Type="String" Name="Mois" Nullable="true" MaxLength="30" />
+          <Property Type="Int32" Name="Nombre" Nullable="true" />
+          <Property Type="Decimal" Name="Montant" Nullable="true" Precision="38" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="RapportCommandesParAnnee_Result">
+          <Property Type="String" Name="Mois" Nullable="true" MaxLength="30" />
+          <Property Type="Int32" Name="Nombre" Nullable="true" />
+          <Property Type="Decimal" Name="Montant" Nullable="true" Precision="38" Scale="2" />
+        </ComplexType>
+        <EntityType Name="Note">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="EspaceTable">
+          <Key>
+            <PropertyRef Name="Reference" />
+          </Key>
+          <Property Name="Reference" Type="Int32" Nullable="false" />
+          <Property Name="Nom" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Etat" Type="Int32" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GestionEspaceModelStoreContainer" CdmEntityContainer="GestionEspaceEntities">
+          <EntitySetMapping Name="C__EFMigrationsHistory">
+            <EntityTypeMapping TypeName="GestionEspaceModel.C__EFMigrationsHistory">
+              <MappingFragment StoreEntitySet="__EFMigrationsHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categorie">
+            <EntityTypeMapping TypeName="GestionEspaceModel.Categorie">
+              <MappingFragment StoreEntitySet="Categorie">
+                <ScalarProperty Name="Id_Categorie" ColumnName="Id_Categorie" />
+                <ScalarProperty Name="Nom_Categorie" ColumnName="Nom_Categorie" />
+                <ScalarProperty Name="Image_Categorie" ColumnName="Image_Categorie" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CommandePayer">
+            <EntityTypeMapping TypeName="GestionEspaceModel.CommandePayer">
+              <MappingFragment StoreEntitySet="CommandePayer">
+                <ScalarProperty Name="Id_Commande" ColumnName="Id_Commande" />
+                <ScalarProperty Name="Nom_Serveur" ColumnName="Nom_Serveur" />
+                <ScalarProperty Name="Nom_Table" ColumnName="Nom_Table" />
+                <ScalarProperty Name="Date_Commande" ColumnName="Date_Commande" />
+                <ScalarProperty Name="Total_Commande" ColumnName="Total_Commande" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DetailsCommandeImprimante">
+            <EntityTypeMapping TypeName="GestionEspaceModel.DetailsCommandeImprimante">
+              <MappingFragment StoreEntitySet="DetailsCommandeImprimante">
+                <ScalarProperty Name="Id_DetailCommande" ColumnName="Id_DetailCommande" />
+                <ScalarProperty Name="Id_Commande" ColumnName="Id_Commande" />
+                <ScalarProperty Name="Id_Imprimante" ColumnName="Id_Imprimante" />
+                <ScalarProperty Name="Id_Produit" ColumnName="Id_Produit" />
+                <ScalarProperty Name="Date_Produit" ColumnName="Date_Produit" />
+                <ScalarProperty Name="Quantite" ColumnName="Quantite" />
+                <ScalarProperty Name="Prix" ColumnName="Prix" />
+                <ScalarProperty Name="Serveur" ColumnName="Serveur" />
+                <ScalarProperty Name="Nom_Table" ColumnName="Nom_Table" />
+                <ScalarProperty Name="Etat" ColumnName="Etat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employer">
+            <EntityTypeMapping TypeName="GestionEspaceModel.Employer">
+              <MappingFragment StoreEntitySet="Employer">
+                <ScalarProperty Name="CIN" ColumnName="CIN" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+                <ScalarProperty Name="DateInscription" ColumnName="DateInscription" />
+                <ScalarProperty Name="MotPasse" ColumnName="MotPasse" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Imprimante">
+            <EntityTypeMapping TypeName="GestionEspaceModel.Imprimante">
+              <MappingFragment StoreEntitySet="Imprimante">
+                <ScalarProperty Name="Id_Imprimante" ColumnName="Id_Imprimante" />
+                <ScalarProperty Name="Nom_Imprimante" ColumnName="Nom_Imprimante" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Produit">
+            <EntityTypeMapping TypeName="GestionEspaceModel.Produit">
+              <MappingFragment StoreEntitySet="Produit">
+                <ScalarProperty Name="Id_Produit" ColumnName="Id_Produit" />
+                <ScalarProperty Name="Nom_Produit" ColumnName="Nom_Produit" />
+                <ScalarProperty Name="Id_CategorieProduit" ColumnName="Id_CategorieProduit" />
+                <ScalarProperty Name="Prix_Normal" ColumnName="Prix_Normal" />
+                <ScalarProperty Name="Image_Produit" ColumnName="Image_Produit" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TableDefault">
+            <EntityTypeMapping TypeName="GestionEspaceModel.TableDefault">
+              <MappingFragment StoreEntitySet="TableDefault">
+                <ScalarProperty Name="Reference" ColumnName="Reference" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="Etat" ColumnName="Etat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="RapportVentes" FunctionName="GestionEspaceModel.Store.RapportVentes">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GestionEspaceModel.RapportVentes_Result">
+                <ScalarProperty Name="Produit" ColumnName="Produit" />
+                <ScalarProperty Name="Quantité" ColumnName="Quantité" />
+                <ScalarProperty Name="Prix" ColumnName="Prix" />
+                <ScalarProperty Name="Montant" ColumnName="Montant" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="RapportVentesGeneral" FunctionName="GestionEspaceModel.Store.RapportVentesGeneral">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GestionEspaceModel.RapportVentesGeneral_Result">
+                <ScalarProperty Name="Produit" ColumnName="Produit" />
+                <ScalarProperty Name="Quantité" ColumnName="Quantité" />
+                <ScalarProperty Name="Prix" ColumnName="Prix" />
+                <ScalarProperty Name="Montant" ColumnName="Montant" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="RapportVentesParEmployer" FunctionName="GestionEspaceModel.Store.RapportVentesParEmployer">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GestionEspaceModel.RapportVentesParEmployer_Result">
+                <ScalarProperty Name="Produit" ColumnName="Produit" />
+                <ScalarProperty Name="Quantité" ColumnName="Quantité" />
+                <ScalarProperty Name="Prix" ColumnName="Prix" />
+                <ScalarProperty Name="Montant" ColumnName="Montant" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="TotalCommandeParAnnees" FunctionName="GestionEspaceModel.Store.TotalCommandeParAnnees">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GestionEspaceModel.TotalCommandeParAnnees_Result">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Montant" ColumnName="Montant" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="RapportCommandes" FunctionName="GestionEspaceModel.Store.RapportCommandes">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GestionEspaceModel.RapportCommandes_Result">
+                <ScalarProperty Name="Mois" ColumnName="Mois" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Montant" ColumnName="Montant" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="RapportCommandesParAnnee" FunctionName="GestionEspaceModel.Store.RapportCommandesParAnnee">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GestionEspaceModel.RapportCommandesParAnnee_Result">
+                <ScalarProperty Name="Mois" ColumnName="Mois" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Montant" ColumnName="Montant" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Note">
+            <EntityTypeMapping TypeName="GestionEspaceModel.Note">
+              <MappingFragment StoreEntitySet="Note">
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TablesEspace">
+            <EntityTypeMapping TypeName="GestionEspaceModel.EspaceTable">
+              <MappingFragment StoreEntitySet="TablesEspace">
+                <ScalarProperty Name="Etat" ColumnName="Etat" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="Reference" ColumnName="Reference" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

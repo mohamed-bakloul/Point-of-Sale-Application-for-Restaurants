@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GestionEspaceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="__EFMigrationsHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Categorie">
+    <Key>
+      <PropertyRef Name="Id_Categorie" />
+    </Key>
+    <Property Name="Id_Categorie" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nom_Categorie" Type="nvarchar" MaxLength="220" Nullable="false" />
+    <Property Name="Image_Categorie" Type="image" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CommandePayer">
+    <Key>
+      <PropertyRef Name="Id_Commande" />
+    </Key>
+    <Property Name="Id_Commande" Type="int" Nullable="false" />
+    <Property Name="Nom_Serveur" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Nom_Table" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Date_Commande" Type="datetime" />
+    <Property Name="Total_Commande" Type="decimal" Precision="10" Scale="2" />
+  </EntityType>
+  <EntityType Name="DetailsCommandeImprimante">
+    <Key>
+      <PropertyRef Name="Id_DetailCommande" />
+    </Key>
+    <Property Name="Id_DetailCommande" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_Commande" Type="int" Nullable="false" />
+    <Property Name="Id_Imprimante" Type="int" />
+    <Property Name="Id_Produit" Type="int" />
+    <Property Name="Date_Produit" Type="datetime" />
+    <Property Name="Quantite" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Prix" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="Serveur" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="Nom_Table" Type="varchar" MaxLength="250" />
+    <Property Name="Etat" Type="int" />
+  </EntityType>
+  <EntityType Name="Employer">
+    <Key>
+      <PropertyRef Name="CIN" />
+    </Key>
+    <Property Name="CIN" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Nom" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Prenom" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="DateInscription" Type="date" />
+    <Property Name="MotPasse" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Role" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Imprimante">
+    <Key>
+      <PropertyRef Name="Id_Imprimante" />
+    </Key>
+    <Property Name="Id_Imprimante" Type="int" Nullable="false" />
+    <Property Name="Nom_Imprimante" Type="nvarchar" MaxLength="250" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'GestionEspace.dbo.Imprimante_Categorie' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Imprimante_Categorie">
+          <Property Name="Id_Imprimante" Type="int" />
+          <Property Name="Id_Categorie" Type="int" />
+        </EntityType>-->
+  <EntityType Name="Produit">
+    <Key>
+      <PropertyRef Name="Id_Produit" />
+    </Key>
+    <Property Name="Id_Produit" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nom_Produit" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Id_CategorieProduit" Type="int" />
+    <Property Name="Prix_Normal" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Image_Produit" Type="image" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'GestionEspace.dbo.TableDefault' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="TableDefault">
+    <Key>
+      <PropertyRef Name="Reference" />
+      <PropertyRef Name="Nom" />
+    </Key>
+    <Property Name="Reference" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Nom" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Etat" Type="int" />
+  </EntityType>
+  <Association Name="FK__DetailsCo__Id_Im__403A8C7D">
+    <End Role="Imprimante" Type="Self.Imprimante" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="DetailsCommandeImprimante" Type="Self.DetailsCommandeImprimante" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Imprimante">
+        <PropertyRef Name="Id_Imprimante" />
+      </Principal>
+      <Dependent Role="DetailsCommandeImprimante">
+        <PropertyRef Name="Id_Imprimante" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DetailsCo__Id_Pr__412EB0B6">
+    <End Role="Produit" Type="Self.Produit" Multiplicity="0..1" />
+    <End Role="DetailsCommandeImprimante" Type="Self.DetailsCommandeImprimante" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Produit">
+        <PropertyRef Name="Id_Produit" />
+      </Principal>
+      <Dependent Role="DetailsCommandeImprimante">
+        <PropertyRef Name="Id_Produit" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <!--Errors Found During Generation:
+error 6004: The table 'GestionEspace.dbo.Imprimante_Categorie' is referenced by a relationship, but cannot be found.
+        <Association Name="FK__Imprimant__Id_Ca__3D5E1FD2" />-->
+  <!--Errors Found During Generation:
+error 6004: The table 'GestionEspace.dbo.Imprimante_Categorie' is referenced by a relationship, but cannot be found.
+        <Association Name="FK__Imprimant__Id_Im__3C69FB99" />-->
+  <Association Name="FK__Produit__Id_Cate__29572725">
+    <End Role="Categorie" Type="Self.Categorie" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Produit" Type="Self.Produit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categorie">
+        <PropertyRef Name="Id_Categorie" />
+      </Principal>
+      <Dependent Role="Produit">
+        <PropertyRef Name="Id_CategorieProduit" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="RapportVentes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="DateDebut" Type="datetime" Mode="In" />
+    <Parameter Name="DateFin" Type="datetime" Mode="In" />
+  </Function>
+  <EntityContainer Name="GestionEspaceModelStoreContainer">
+    <EntitySet Name="__EFMigrationsHistory" EntityType="Self.__EFMigrationsHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Categorie" EntityType="Self.Categorie" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CommandePayer" EntityType="Self.CommandePayer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DetailsCommandeImprimante" EntityType="Self.DetailsCommandeImprimante" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employer" EntityType="Self.Employer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Imprimante" EntityType="Self.Imprimante" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Produit" EntityType="Self.Produit" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TableDefault" EntityType="Self.TableDefault" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [TableDefault].[Reference] AS [Reference], 
+    [TableDefault].[Nom] AS [Nom], 
+    [TableDefault].[Etat] AS [Etat]
+    FROM [dbo].[TableDefault] AS [TableDefault]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__DetailsCo__Id_Im__403A8C7D" Association="Self.FK__DetailsCo__Id_Im__403A8C7D">
+      <End Role="Imprimante" EntitySet="Imprimante" />
+      <End Role="DetailsCommandeImprimante" EntitySet="DetailsCommandeImprimante" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DetailsCo__Id_Pr__412EB0B6" Association="Self.FK__DetailsCo__Id_Pr__412EB0B6">
+      <End Role="Produit" EntitySet="Produit" />
+      <End Role="DetailsCommandeImprimante" EntitySet="DetailsCommandeImprimante" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Produit__Id_Cate__29572725" Association="Self.FK__Produit__Id_Cate__29572725">
+      <End Role="Categorie" EntitySet="Categorie" />
+      <End Role="Produit" EntitySet="Produit" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

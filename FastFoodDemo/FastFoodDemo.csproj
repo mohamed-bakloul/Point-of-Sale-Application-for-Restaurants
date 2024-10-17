@@ -1,0 +1,770 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2BDDB774-9994-45CD-A910-8A07B4C7AFA6}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FastFoodDemo</RootNamespace>
+    <AssemblyName>FastFoodDemo</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
+    <PublishUrl>C:\Users\Abderrahim\Documents\Gestion espace\Setup\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Icons\shop-131994968029903071.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>false</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>F16B88BDB57B2073FB48F7185A7429E65E510FDC</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>FastFoodDemo_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.9\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="DocumentFormat.OpenXml, Version=2.20.0.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.20.0\lib\net40\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus, Version=6.2.4.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.6.2.4\lib\net35\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus.Interfaces, Version=6.1.1.0, Culture=neutral, PublicKeyToken=a694d7f3b0907a61, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.Interfaces.6.1.1\lib\net35\EPPlus.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus.System.Drawing, Version=6.1.1.0, Culture=neutral, PublicKeyToken=2308d35469c9bac0, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.System.Drawing.6.1.1\lib\net35\EPPlus.System.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="Guna.UI2">
+      <HintPath>C:\Users\Abderrahim\Downloads\Guna_UI_Framework_Ultimate_v2.0.0.1\Guna_UI_Framework_Ultimate_v2.0.0.1\Guna_UI_Framework_Ultimate_v2.0.0.1\Guna.UI-Framework-Lib-master\Guna.UI2 WinForms\.net 4.0\Guna.UI2.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.3, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13.3\lib\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.WinForms, Version=0.9.7.1, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.WinForms.0.9.7.1\lib\net45\LiveCharts.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Word.15.0.4797.1004\lib\net20\Microsoft.Office.Interop.Word.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1620.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1620.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1620.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1620.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1620.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Npgsql, Version=4.0.13.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Npgsql.4.0.13\lib\net45\Npgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="Spire.Doc, Version=10.8.0.0, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
+      <HintPath>..\packages\FreeSpire.Doc.10.8.1\lib\net40\Spire.Doc.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.Pdf, Version=8.8.6.0, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
+      <HintPath>..\packages\FreeSpire.Doc.10.8.1\lib\net40\Spire.Pdf.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.4.0\lib\netstandard1.1\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.3\lib\netstandard1.1\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard1.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.2\lib\portable-net45+win8+wp8+wpa81\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Classes\ADO.cs" />
+    <Compile Include="Classes\Cryptography.cs" />
+    <Compile Include="Classes\GenerateFiles.cs" />
+    <Compile Include="Classes\Helpers.cs" />
+    <Compile Include="Classes\NumberToWords.cs" />
+    <Compile Include="Classes\RoundPictureBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DataSets\BenificeDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BenificeDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Connexion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Connexion.Designer.cs">
+      <DependentUpon>Connexion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\CommandeDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CommandeDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EspaceTables.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EspaceTables.Designer.cs">
+      <DependentUpon>EspaceTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\GestionCommercial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\GestionCommercial.Designer.cs">
+      <DependentUpon>GestionCommercial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ReportViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ReportViewer.Designer.cs">
+      <DependentUpon>ReportViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Rapports\CrystalReportBenefice.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReportBenefice.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RawPrinterHelper.cs" />
+    <Compile Include="ReportExtensions\LocalReportExtensions.cs" />
+    <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="User Controls\Benefice.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Controls\Benefice.Designer.cs">
+      <DependentUpon>Benefice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Controls\BonReception.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Controls\BonReception.Designer.cs">
+      <DependentUpon>BonReception.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Controls\GestionFournisseur.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Controls\GestionFournisseur.Designer.cs">
+      <DependentUpon>GestionFournisseur.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Controls\GestionImprimantes.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Controls\GestionImprimantes.Designer.cs">
+      <DependentUpon>GestionImprimantes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Controls\GestionStock.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Controls\GestionStock.Designer.cs">
+      <DependentUpon>GestionStock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Controls\ListeBonReception.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Controls\ListeBonReception.Designer.cs">
+      <DependentUpon>ListeBonReception.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Controls\ListeCharges.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Controls\ListeCharges.Designer.cs">
+      <DependentUpon>ListeCharges.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Controls\ListeCommandes.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Controls\ListeCommandes.Designer.cs">
+      <DependentUpon>ListeCommandes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Controls\Login.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Controls\Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Controls\MembersDates.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Controls\MembersDates.Designer.cs">
+      <DependentUpon>MembersDates.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Controls\ParametrePermissions.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Controls\ParametrePermissions.Designer.cs">
+      <DependentUpon>ParametrePermissions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Controls\RapportParMail.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Controls\RapportParMail.Designer.cs">
+      <DependentUpon>RapportParMail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Controls\TablesEspace.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Controls\TablesEspace.Designer.cs">
+      <DependentUpon>TablesEspace.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Controls\FirstCustomControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Controls\FirstCustomControl.Designer.cs">
+      <DependentUpon>FirstCustomControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\General.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\General.Designer.cs">
+      <DependentUpon>General.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Categorie.cs">
+      <DependentUpon>GestionEspaceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CommandePayer.cs">
+      <DependentUpon>GestionEspaceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C__EFMigrationsHistory.cs">
+      <DependentUpon>GestionEspaceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DetailsCommandeImprimante.cs">
+      <DependentUpon>GestionEspaceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Employer.cs">
+      <DependentUpon>GestionEspaceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EspaceTable.cs">
+      <DependentUpon>GestionEspaceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GestionEspaceEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GestionEspaceEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GestionEspaceEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GestionEspaceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GestionEspaceEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GestionEspaceEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Imprimante.cs">
+      <DependentUpon>GestionEspaceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Note.cs">
+      <DependentUpon>GestionEspaceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Produit.cs">
+      <DependentUpon>GestionEspaceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RapportCommandesParAnnee_Result.cs">
+      <DependentUpon>GestionEspaceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RapportCommandes_Result.cs">
+      <DependentUpon>GestionEspaceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RapportVentesGeneral_Result.cs">
+      <DependentUpon>GestionEspaceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RapportVentesParEmployer_Result.cs">
+      <DependentUpon>GestionEspaceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RapportVentes_Result.cs">
+      <DependentUpon>GestionEspaceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TableDefault.cs">
+      <DependentUpon>GestionEspaceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TotalCommandeParAnnees_Result.cs">
+      <DependentUpon>GestionEspaceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User Controls\MySecondCustmControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Controls\MySecondCustmControl.Designer.cs">
+      <DependentUpon>MySecondCustmControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Print.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Print.Designer.cs">
+      <DependentUpon>Print.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rapports\CrystalReportParametrageTicket.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReportParametrageTicket.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Rapports\CrystalReportRapportsVentes.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReportRapportsVentes.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Rapports\CrystalReportTicketClient.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReportTicketClient.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Rapports\CrystalReportTicketCuisine.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReportTicketCuisine.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="User Controls\Categorie.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Controls\Categorie.Designer.cs">
+      <DependentUpon>Categorie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Controls\GestionCategories.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Controls\GestionCategories.Designer.cs">
+      <DependentUpon>GestionCategories.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Controls\GestionCatProd.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Controls\GestionCatProd.Designer.cs">
+      <DependentUpon>GestionCatProd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Controls\GestionProduits.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Controls\GestionProduits.Designer.cs">
+      <DependentUpon>GestionProduits.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Controls\GestionUtilisateur.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Controls\GestionUtilisateur.Designer.cs">
+      <DependentUpon>GestionUtilisateur.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Controls\Impression.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Controls\Impression.Designer.cs">
+      <DependentUpon>Impression.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Controls\ParamEspace.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Controls\ParamEspace.Designer.cs">
+      <DependentUpon>ParamEspace.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Controls\ParametreEspace.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Controls\ParametreEspace.Designer.cs">
+      <DependentUpon>ParametreEspace.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Controls\ParametreTables.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Controls\ParametreTables.Designer.cs">
+      <DependentUpon>ParametreTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Controls\PointDeVente.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Controls\PointDeVente.Designer.cs">
+      <DependentUpon>PointDeVente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Controls\Produit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Controls\Produit.Designer.cs">
+      <DependentUpon>Produit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Controls\Rapport.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Controls\Rapport.Designer.cs">
+      <DependentUpon>Rapport.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Forms\Connexion.resx">
+      <DependentUpon>Connexion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EspaceTables.resx">
+      <DependentUpon>EspaceTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\GestionCommercial.resx">
+      <DependentUpon>GestionCommercial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ReportViewer.resx">
+      <DependentUpon>ReportViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rapports\CrystalReportBenefice.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReportBenefice.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rapports\ReportTicketCuisine.rdlc" />
+    <EmbeddedResource Include="Report1.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Controls\Benefice.resx">
+      <DependentUpon>Benefice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Controls\BonReception.resx">
+      <DependentUpon>BonReception.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Controls\GestionFournisseur.resx">
+      <DependentUpon>GestionFournisseur.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Controls\GestionImprimantes.resx">
+      <DependentUpon>GestionImprimantes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Controls\GestionStock.resx">
+      <DependentUpon>GestionStock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Controls\ListeBonReception.resx">
+      <DependentUpon>ListeBonReception.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Controls\ListeCharges.resx">
+      <DependentUpon>ListeCharges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Controls\ListeCommandes.resx">
+      <DependentUpon>ListeCommandes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Controls\Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Controls\MembersDates.resx">
+      <DependentUpon>MembersDates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Controls\ParametrePermissions.resx">
+      <DependentUpon>ParametrePermissions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Controls\RapportParMail.resx">
+      <DependentUpon>RapportParMail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Controls\TablesEspace.resx">
+      <DependentUpon>TablesEspace.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Controls\FirstCustomControl.resx">
+      <DependentUpon>FirstCustomControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\General.resx">
+      <DependentUpon>General.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Controls\MySecondCustmControl.resx">
+      <DependentUpon>MySecondCustmControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Print.resx">
+      <DependentUpon>Print.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Rapports\CrystalReportParametrageTicket.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReportParametrageTicket.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rapports\CrystalReportRapportsVentes.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReportRapportsVentes.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rapports\CrystalReportTicketClient.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReportTicketClient.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rapports\CrystalReportTicketCuisine.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReportTicketCuisine.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Controls\Categorie.resx">
+      <DependentUpon>Categorie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Controls\GestionCategories.resx">
+      <DependentUpon>GestionCategories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Controls\GestionCatProd.resx">
+      <DependentUpon>GestionCatProd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Controls\GestionProduits.resx">
+      <DependentUpon>GestionProduits.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Controls\GestionUtilisateur.resx">
+      <DependentUpon>GestionUtilisateur.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Controls\Impression.resx">
+      <DependentUpon>Impression.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Controls\ParamEspace.resx">
+      <DependentUpon>ParamEspace.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Controls\ParametreEspace.resx">
+      <DependentUpon>ParametreEspace.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Controls\ParametreTables.resx">
+      <DependentUpon>ParametreTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Controls\PointDeVente.resx">
+      <DependentUpon>PointDeVente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Controls\Produit.resx">
+      <DependentUpon>Produit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Controls\Rapport.resx">
+      <DependentUpon>Rapport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EntityDeploy Include="Models\GestionEspaceEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>GestionEspaceEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DataSets\BenificeDataSet.xsc">
+      <DependentUpon>BenificeDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\BenificeDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BenificeDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSets\BenificeDataSet.xss">
+      <DependentUpon>BenificeDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\CommandeDataSet.xsc">
+      <DependentUpon>CommandeDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\CommandeDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CommandeDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSets\CommandeDataSet.xss">
+      <DependentUpon>CommandeDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="FastFoodDemo_TemporaryKey.pfx" />
+    <None Include="Models\GestionEspaceEntities.edmx.diagram">
+      <DependentUpon>GestionEspaceEntities.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Icons\icons8-restaurant-96.ico" />
+    <Content Include="Resources\food-health.ico" />
+    <Content Include="Models\GestionEspaceEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>GestionEspaceEntities.edmx</DependentUpon>
+      <LastGenOutput>GestionEspaceEntities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\GestionEspaceEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>GestionEspaceEntities.edmx</DependentUpon>
+      <LastGenOutput>GestionEspaceEntities.cs</LastGenOutput>
+    </Content>
+    <Content Include="Icons\order-food.ico" />
+    <Content Include="Icons\RestauIcon.ico" />
+    <Content Include="Icons\shop-131994968029903071.ico" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\icons8-keyboard-50.png" />
+    <None Include="Resources\icons8-keyboard-50 %281%29.png" />
+    <None Include="Resources\icons8-double-right-50.png" />
+    <None Include="Resources\icons8-double-left-50.png" />
+    <None Include="Resources\icons8-double-arrow-50 %282%29.png" />
+    <None Include="Resources\icons8-double-arrow-50.png" />
+    <None Include="Resources\icons8-edit-text-file-30.png" />
+    <None Include="Resources\icons8-edit-text-file-401.png" />
+    <None Include="Resources\icons8-edit-text-file-40.png" />
+    <None Include="Resources\icons8-edit-25.png" />
+    <None Include="Resources\icons8-edit-64.png" />
+    <None Include="Resources\icons8-full-trash-25.png" />
+    <None Include="Resources\icons8-close-50 %282%29.png" />
+    <None Include="Resources\icons8-close-50 %284%29.png" />
+    <None Include="Resources\icons8-back-30.png" />
+    <None Include="Resources\icons8-back-50.png" />
+    <None Include="Resources\icons8-hide-sidepanel-50.png" />
+    <None Include="Resources\icons8-show-sidepanel-50.png" />
+    <None Include="Resources\icons8-menu-50 %282%29.png" />
+    <None Include="Resources\icons8-menu-30.png" />
+    <None Include="Resources\icons8-close-50.png" />
+    <None Include="Resources\icons8-close-24.png" />
+    <None Include="Resources\icons8-show-property-50.png" />
+    <None Include="Resources\icons8-password-40.png" />
+    <None Include="Resources\icons8-password-50.png" />
+    <None Include="Resources\Forgot password-cuate.png" />
+    <None Include="Resources\Tablet login-cuate.png" />
+    <None Include="Resources\hide1.png" />
+    <None Include="Resources\show1.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

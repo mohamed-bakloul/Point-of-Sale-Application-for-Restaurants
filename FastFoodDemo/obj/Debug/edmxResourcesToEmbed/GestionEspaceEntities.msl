@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="GestionEspaceModelStoreContainer" CdmEntityContainer="GestionEspaceEntities">
+    <EntitySetMapping Name="C__EFMigrationsHistory">
+      <EntityTypeMapping TypeName="GestionEspaceModel.C__EFMigrationsHistory">
+        <MappingFragment StoreEntitySet="__EFMigrationsHistory">
+          <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="GestionEspaceModel.Categorie">
+        <MappingFragment StoreEntitySet="Categorie">
+          <ScalarProperty Name="Id_Categorie" ColumnName="Id_Categorie" />
+          <ScalarProperty Name="Nom_Categorie" ColumnName="Nom_Categorie" />
+          <ScalarProperty Name="Image_Categorie" ColumnName="Image_Categorie" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CommandePayers">
+      <EntityTypeMapping TypeName="GestionEspaceModel.CommandePayer">
+        <MappingFragment StoreEntitySet="CommandePayer">
+          <ScalarProperty Name="Id_Commande" ColumnName="Id_Commande" />
+          <ScalarProperty Name="Nom_Serveur" ColumnName="Nom_Serveur" />
+          <ScalarProperty Name="Nom_Table" ColumnName="Nom_Table" />
+          <ScalarProperty Name="Date_Commande" ColumnName="Date_Commande" />
+          <ScalarProperty Name="Total_Commande" ColumnName="Total_Commande" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DetailsCommandeImprimantes">
+      <EntityTypeMapping TypeName="GestionEspaceModel.DetailsCommandeImprimante">
+        <MappingFragment StoreEntitySet="DetailsCommandeImprimante">
+          <ScalarProperty Name="Id_DetailCommande" ColumnName="Id_DetailCommande" />
+          <ScalarProperty Name="Id_Commande" ColumnName="Id_Commande" />
+          <ScalarProperty Name="Id_Imprimante" ColumnName="Id_Imprimante" />
+          <ScalarProperty Name="Id_Produit" ColumnName="Id_Produit" />
+          <ScalarProperty Name="Date_Produit" ColumnName="Date_Produit" />
+          <ScalarProperty Name="Quantite" ColumnName="Quantite" />
+          <ScalarProperty Name="Prix" ColumnName="Prix" />
+          <ScalarProperty Name="Serveur" ColumnName="Serveur" />
+          <ScalarProperty Name="Nom_Table" ColumnName="Nom_Table" />
+          <ScalarProperty Name="Etat" ColumnName="Etat" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employers">
+      <EntityTypeMapping TypeName="GestionEspaceModel.Employer">
+        <MappingFragment StoreEntitySet="Employer">
+          <ScalarProperty Name="CIN" ColumnName="CIN" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+          <ScalarProperty Name="DateInscription" ColumnName="DateInscription" />
+          <ScalarProperty Name="MotPasse" ColumnName="MotPasse" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Imprimantes">
+      <EntityTypeMapping TypeName="GestionEspaceModel.Imprimante">
+        <MappingFragment StoreEntitySet="Imprimante">
+          <ScalarProperty Name="Id_Imprimante" ColumnName="Id_Imprimante" />
+          <ScalarProperty Name="Nom_Imprimante" ColumnName="Nom_Imprimante" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Produits">
+      <EntityTypeMapping TypeName="GestionEspaceModel.Produit">
+        <MappingFragment StoreEntitySet="Produit">
+          <ScalarProperty Name="Id_Produit" ColumnName="Id_Produit" />
+          <ScalarProperty Name="Nom_Produit" ColumnName="Nom_Produit" />
+          <ScalarProperty Name="Id_CategorieProduit" ColumnName="Id_CategorieProduit" />
+          <ScalarProperty Name="Prix_Normal" ColumnName="Prix_Normal" />
+          <ScalarProperty Name="Image_Produit" ColumnName="Image_Produit" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TableDefaults">
+      <EntityTypeMapping TypeName="GestionEspaceModel.TableDefault">
+        <MappingFragment StoreEntitySet="TableDefault">
+          <ScalarProperty Name="Reference" ColumnName="Reference" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="Etat" ColumnName="Etat" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="RapportVentes" FunctionName="GestionEspaceModel.Store.RapportVentes">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GestionEspaceModel.RapportVentes_Result">
+          <ScalarProperty Name="Produit" ColumnName="Produit" />
+          <ScalarProperty Name="Quantité_total" ColumnName="Quantité total" />
+          <ScalarProperty Name="Prix_unitaire" ColumnName="Prix unitaire" />
+          <ScalarProperty Name="Montant_total" ColumnName="Montant total" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>
